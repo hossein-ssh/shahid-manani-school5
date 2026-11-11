@@ -1,0 +1,762 @@
+# Project: Andisheh Sari — Complete Educational Institute Management System
+
+Act as a senior full-stack software engineer, database architect, UI/UX designer, and security engineer.
+
+Your task is to build a complete, functional, production-oriented educational institute management web application inspired by the overall concept and structure of https://andishesari.ir/.
+
+First, inspect the reference website if browsing is available. Study its publicly accessible layout, navigation, visual style, and educational features. Use it as design inspiration, but create an original implementation rather than copying proprietary source code, private content, or protected assets.
+
+Do not stop after producing a visual mockup. Build a functional application with working navigation, authentication, role-based dashboards, database integration, administrative controls, and the features described below.
+
+If the reference website cannot be accessed, proceed using the detailed specifications in this prompt without inventing claims about its actual features.
+
+==================================================
+1. PROJECT OBJECTIVES
+==================================================
+
+Build a complete Persian educational institute management platform with the following user roles:
+
+1. Super Administrator
+2. Institute Manager
+3. Teacher
+4. Student
+5. Counselor
+
+The platform must include:
+
+- A public homepage.
+- Institute introduction and contact information.
+- Student registration and login.
+- Separate dashboards for each authorized role.
+- Student profile and academic information.
+- Weekly class schedules.
+- Teacher grade management.
+- Student grade viewing.
+- Announcements and notifications.
+- Student feedback and surveys.
+- Online classes with an administrator-controlled enable/disable setting.
+- Counselor availability schedules and student communication.
+- User and role management.
+- Responsive design for desktop, tablet, and mobile devices.
+
+The system must be modular, maintainable, secure, and easy to extend.
+
+==================================================
+2. LANGUAGE AND USER INTERFACE
+==================================================
+
+The entire user-facing application must be in Persian (Farsi).
+
+Requirements:
+
+- Use proper Persian typography.
+- Set the document language to fa.
+- Apply RTL layout globally using direction: rtl.
+- Use a Persian-friendly font such as Vazirmatn.
+- Ensure Persian text, numbers, forms, tables, menus, and dashboard components render correctly.
+- Use a consistent Persian date format where appropriate.
+- Make all layouts responsive.
+- Provide accessible labels, keyboard navigation, appropriate contrast, and clear validation messages.
+
+Design style:
+
+Create a modern, professional educational website inspired by Persian educational institutions.
+
+Use a clean layout, a professional color palette, attractive cards, consistent spacing, readable typography, clear navigation, and a polished dashboard interface.
+
+The homepage should look professional without being excessively complicated.
+
+Avoid unnecessary animations, visual clutter, and oversized decorative elements.
+
+Use reusable UI components throughout the project.
+
+==================================================
+3. PUBLIC WEBSITE
+==================================================
+
+Create the following public pages:
+
+A. Homepage
+- Institute logo and name.
+- Navigation menu.
+- Hero section introducing the institute.
+- Main registration and login buttons.
+- Institute introduction.
+- Educational programs or courses.
+- Announcements and news.
+- Important dates.
+- Contact information.
+- Footer containing relevant links.
+
+B. About the Institute
+- Institute introduction.
+- Educational mission.
+- Available services.
+- Teachers and staff, when configured by an administrator.
+
+C. Contact Page
+- Address.
+- Phone number.
+- Email address, if configured.
+- Contact form.
+- Form validation and spam protection.
+
+D. Login Page
+- Secure authentication.
+- Persian error messages.
+- Password visibility toggle.
+- Password recovery workflow.
+- Appropriate session handling.
+
+E. Student Registration
+- Full name.
+- Student identification number, if applicable.
+- Phone number.
+- Email address, if required.
+- Password.
+- Password confirmation.
+- Required consent and validation.
+
+Registration must not automatically grant administrative, teacher, or counselor privileges.
+
+Support configurable student account approval by an administrator.
+
+If the institute requires invitation codes or manually created student accounts, allow the administrator to configure that registration policy.
+
+==================================================
+4. ROLE-BASED ACCESS CONTROL
+==================================================
+
+Implement proper server-side role-based access control.
+
+SUPER ADMINISTRATOR:
+- Full control over the application.
+- Manage all users and roles.
+- Create, edit, suspend, and deactivate accounts.
+- Assign teachers, counselors, students, and managers.
+- Configure global system settings.
+- Enable or disable online classes.
+- Manage academic terms, courses, and classes.
+- View and manage schedules.
+- Manage announcements and surveys.
+- Access relevant audit logs.
+- Configure counselor availability.
+- Manage grade-related settings.
+
+INSTITUTE MANAGER:
+- Access only the features explicitly granted by the administrator.
+- Manage approved students and teachers.
+- Manage class schedules and academic information within assigned permissions.
+- Publish announcements if authorized.
+- View relevant reports.
+
+TEACHER:
+- View assigned classes and students.
+- View their teaching schedule.
+- Enter and update grades for students in their assigned classes.
+- Add academic comments where permitted.
+- Publish class-related announcements if authorized.
+- Access online classes when enabled and authorized.
+
+STUDENT:
+- View and edit permitted profile fields.
+- View personal academic information.
+- View weekly schedules.
+- View published grades and teacher feedback.
+- Read announcements.
+- Participate in surveys.
+- Submit feedback.
+- View available online classes when enabled.
+- Contact the counselor during configured availability periods.
+
+COUNSELOR:
+- Manage personal availability, subject to institute policies.
+- View authorized student inquiries.
+- Communicate with students through the counseling system.
+- Mark inquiries as pending, in progress, or resolved.
+- Maintain confidential counseling notes with strict access restrictions.
+- View only the student information necessary for the counselor's assigned responsibilities.
+
+IMPORTANT SECURITY RULES:
+
+- Enforce permissions on the server, not just in the frontend.
+- A user must never gain access by manually changing a URL, request payload, or browser state.
+- Students must never access other students' private grades or counseling records.
+- Teachers must only manage grades for their assigned classes.
+- Counselors must not access unrelated administrative information.
+- Administrative permissions must be configurable and checked server-side.
+- Protect all sensitive endpoints against unauthorized access.
+
+==================================================
+5. STUDENT DASHBOARD
+==================================================
+
+Create a dedicated student dashboard with:
+
+- Welcome message and student name.
+- Profile summary.
+- Current academic term.
+- Weekly class schedule.
+- Upcoming classes.
+- Recent announcements.
+- Published grades.
+- Teacher feedback.
+- Available online classes.
+- Counselor availability status.
+- A direct link to contact the counselor.
+- Pending surveys and feedback requests.
+- Notifications and unread notification count.
+
+Students must only see information associated with their own accounts.
+
+Use clear cards, tables, and a mobile-friendly navigation system.
+
+==================================================
+6. TEACHER DASHBOARD AND GRADE MANAGEMENT
+==================================================
+
+Create a dedicated teacher dashboard.
+
+Features:
+
+- Assigned classes.
+- Student lists restricted to assigned classes.
+- Weekly teaching schedule.
+- Grade entry forms.
+- Grade editing subject to permissions.
+- Assessment title and type.
+- Score and maximum score.
+- Assessment date.
+- Optional teacher comments.
+- Draft and published grade states.
+- Grade publication controls.
+
+Only authorized teachers may enter grades for their assigned classes.
+
+Students must only see grades that have been published to them.
+
+Store grade history where practical, including who changed a grade and when.
+
+Validate scores and prevent invalid values.
+
+For example, a score must not exceed its configured maximum unless the grading scheme explicitly permits it.
+
+Provide clear feedback when a grade is saved, updated, or published.
+
+==================================================
+7. WEEKLY CLASS SCHEDULE
+==================================================
+
+Create a class scheduling system for students, teachers, and administrators.
+
+Features:
+
+- Weekly calendar view.
+- Day and time.
+- Course or subject.
+- Teacher name.
+- Classroom or meeting location.
+- Start and end times.
+- Online or in-person class type.
+- Class status.
+- Academic term.
+- Class cancellation or rescheduling.
+
+Administrators must be able to create and edit schedules.
+
+Students must see only their assigned classes.
+
+Teachers must see their assigned teaching sessions.
+
+Prevent scheduling conflicts when possible, including overlapping sessions for the same teacher or classroom.
+
+Use the institute's configured timezone consistently.
+
+==================================================
+8. ONLINE CLASS MODULE WITH ADMINISTRATIVE CONTROL
+==================================================
+
+Online classes are a required feature, but the administrator must be able to enable or disable the entire module without deleting its data.
+
+Implement a global configuration setting:
+
+online_classes_enabled = true or false
+
+When enabled:
+- Authorized teachers can create or manage online class sessions.
+- Students can view available online sessions.
+- Each session includes a title, description, scheduled date, start time, end time, teacher, and access instructions.
+- Students can access the session only if they are enrolled or otherwise authorized.
+- Show upcoming and completed sessions.
+- Display appropriate status messages.
+
+When disabled:
+- Hide or disable online class entry points in the student interface.
+- Prevent unauthorized creation or joining of sessions.
+- Display a configurable message explaining that online classes are currently unavailable.
+- Preserve all existing class records and settings.
+- Do not delete schedules, grades, users, or other data.
+- Permit authorized administrators to manage the module settings.
+
+Important:
+Do not pretend that a working video conferencing system exists if it has not been implemented.
+
+Design the module so it can integrate with an actual video conferencing provider, such as Jitsi, or another suitable service.
+
+If video conferencing integration requires additional credentials or configuration, provide a clearly documented configuration interface and a functional fallback state.
+
+Never expose private meeting credentials or administrative secrets to unauthorized users.
+
+==================================================
+9. COUNSELOR AVAILABILITY AND STUDENT COMMUNICATION
+==================================================
+
+Build a dedicated counseling module.
+
+The counselor must be able to configure working days and available hours.
+
+For example, the counselor might be available on Saturdays and Mondays from 10:00 to 14:00.
+
+The example is illustrative only. The actual schedule must be configurable.
+
+Required features:
+
+- Counselor profile.
+- Available days.
+- Start and end times.
+- Temporary unavailability.
+- Appointment or consultation requests.
+- Student-to-counselor messaging.
+- Inquiry categories.
+- Request status.
+- Read and unread messages.
+- Conversation history.
+- Notifications when a new message arrives.
+
+Student experience:
+
+- Display whether the counselor is currently available.
+- Show the next available consultation period.
+- Allow students to submit a request during permitted periods.
+- Allow students to send a message or consultation request outside those periods, if the institute permits it.
+- Clearly state when the counselor will next be available.
+- Prevent students from accessing another student's conversations.
+
+Counselor experience:
+
+- View incoming student requests.
+- Respond to messages.
+- Manage appointment requests.
+- Mark inquiries as pending, in progress, or resolved.
+- View only authorized student details.
+- Maintain private counseling notes with strict access controls.
+
+Enforce availability and communication rules on the server.
+
+Do not treat a client-side clock as authoritative.
+
+==================================================
+10. ANNOUNCEMENTS, NOTIFICATIONS, AND STUDENT FEEDBACK
+==================================================
+
+Create an announcements system.
+
+Authorized administrators and teachers must be able to publish announcements according to their permissions.
+
+Each announcement should support:
+
+- Title.
+- Content.
+- Publication date.
+- Author.
+- Target audience.
+- Optional expiration date.
+- Published or draft status.
+
+Support targeted announcements for:
+- All students.
+- Specific classes.
+- Specific groups.
+- Teachers, where authorized.
+
+Create an in-app notification system for important events, including:
+
+- New announcements.
+- Published grades.
+- Schedule changes.
+- Online class updates.
+- Counselor responses.
+- Survey requests.
+
+Create a feedback and survey module.
+
+Administrators must be able to:
+
+- Create surveys.
+- Add questions.
+- Choose supported question types.
+- Set opening and closing dates.
+- Select the target audience.
+- Enable or disable anonymous responses.
+- View aggregated results.
+
+Students must be able to submit responses and see appropriate confirmation messages.
+
+Prevent duplicate responses when a survey is configured for one response per user.
+
+Respect anonymous survey settings and do not expose respondents' identities in anonymous results.
+
+==================================================
+11. ADMINISTRATIVE DASHBOARD
+==================================================
+
+Create a comprehensive administrative dashboard.
+
+Include:
+
+- Total registered students.
+- Active teachers.
+- Active counselors.
+- Current classes.
+- Upcoming sessions.
+- Pending student registrations.
+- Recent announcements.
+- Recent administrative activity.
+- System status and configuration.
+
+Provide management pages for:
+
+- Users.
+- Roles and permissions.
+- Students.
+- Teachers.
+- Counselors.
+- Courses and subjects.
+- Classes and groups.
+- Academic terms.
+- Weekly schedules.
+- Grades.
+- Online classes.
+- Announcements.
+- Surveys and feedback.
+- Counseling availability.
+- System settings.
+- Audit logs.
+
+Implement search, filtering, pagination, form validation, and confirmation dialogs where appropriate.
+
+Use soft deletion or deactivation for important records when practical.
+
+Protect critical administrative actions against accidental execution.
+
+==================================================
+12. DATABASE AND BACKEND
+==================================================
+
+Build a real backend with persistent database storage.
+
+Do not rely on hardcoded frontend arrays, localStorage, or mock API responses as the primary data storage for the production application.
+
+Use a maintainable architecture.
+
+Recommended stack:
+
+Frontend:
+- React.
+- TypeScript.
+- Vite.
+- Tailwind CSS or another maintainable styling solution.
+
+Backend:
+- Node.js.
+- TypeScript.
+- Express or an equivalent suitable framework.
+
+Database:
+- PostgreSQL for production.
+- A documented local development alternative may be provided if necessary.
+
+Authentication:
+- Secure server-side authentication.
+- Secure password hashing using Argon2id or bcrypt.
+- Secure session cookies or an appropriately implemented token-based authentication system.
+- Server-side authorization middleware.
+
+Suggested database entities:
+
+- users
+- roles
+- permissions
+- user_roles
+- students
+- teachers
+- counselors
+- courses
+- academic_terms
+- classes
+- class_enrollments
+- schedules
+- assessments
+- grades
+- grade_history
+- announcements
+- surveys
+- survey_questions
+- survey_responses
+- notifications
+- online_sessions
+- counselor_availability
+- counseling_requests
+- counseling_messages
+- audit_logs
+- system_settings
+
+Define appropriate relationships, primary keys, foreign keys, unique constraints, and indexes.
+
+Use database migrations and provide seed scripts for development.
+
+Use transactions for operations that require atomicity.
+
+Ensure that disabling a module does not delete its database records.
+
+Keep configuration and secrets in environment variables.
+
+Never commit real passwords, API keys, database credentials, or session secrets into the source code.
+
+If the selected AI Studio environment cannot directly provide or run the backend, generate the complete backend source code and explain how to run it locally.
+
+Do not claim that the database is connected unless the connection has been configured and tested.
+
+==================================================
+13. SECURITY AND PRIVACY
+==================================================
+
+Implement security appropriate for an application containing educational records and private student communications.
+
+Requirements:
+
+- Secure password storage.
+- Server-side access control.
+- Input validation and sanitization.
+- Protection against SQL injection.
+- Protection against cross-site scripting.
+- CSRF protection when required by the authentication architecture.
+- Rate limiting for login and sensitive endpoints.
+- Secure cookie settings.
+- Appropriate security headers.
+- Safe error messages.
+- Audit logs for important administrative operations.
+- Protection against unauthorized grade modifications.
+- Strict separation between student records.
+- Strict separation between counseling conversations.
+- Secure handling of environment variables.
+- Safe account deactivation and recovery workflows.
+- Minimal collection of personal data.
+- Data export and backup documentation.
+
+Do not store plain-text passwords.
+
+Do not expose sensitive data in frontend bundles, logs, URLs, or public API responses.
+
+Do not include confidential counseling notes in ordinary student or teacher responses.
+
+Provide a documented procedure for creating the first administrator account securely.
+
+Do not create a publicly accessible default administrator account with a hardcoded password.
+
+==================================================
+14. RESPONSIVE DESIGN AND ACCESSIBILITY
+==================================================
+
+The application must work on:
+
+- Windows desktop browsers.
+- Android mobile browsers.
+- iPhone and iPad browsers.
+- Tablet-sized screens.
+
+Use responsive layouts and mobile-friendly forms.
+
+Make tables usable on smaller screens.
+
+Provide loading states, empty states, error messages, and success notifications.
+
+Ensure the navigation remains usable on mobile devices.
+
+Use accessible HTML semantics and form labels.
+
+==================================================
+15. FREE DEVELOPMENT AND DEPLOYMENT
+==================================================
+
+My deployment plan is:
+
+Phase 1:
+Run and test the project locally on my Windows computer at no cost.
+
+Phase 2:
+Deploy the application to a suitable free hosting environment for initial online testing.
+
+Phase 3:
+Move to a suitable production hosting provider when the application is ready.
+
+Design the application so it can be deployed to a different provider without major architectural changes.
+
+Provide:
+
+- A complete project directory.
+- package.json files.
+- Frontend source code.
+- Backend source code.
+- Database schema and migrations.
+- Development seed scripts.
+- .env.example files containing placeholders only.
+- A README with Persian setup instructions.
+- Local installation instructions for Windows.
+- Development and production commands.
+- Database setup instructions.
+- Deployment instructions.
+- Backup and restore instructions.
+- A list of required environment variables.
+- A list of external services that require separate configuration.
+
+Do not assume that every free hosting provider supports persistent databases, background processes, file storage, or permanent uptime.
+
+Explain any limitations of the selected free hosting option.
+
+Do not introduce unnecessary paid services.
+
+==================================================
+16. TESTING AND ACCEPTANCE CRITERIA
+==================================================
+
+Create automated tests where practical.
+
+At minimum, test:
+
+1. Student registration and login.
+2. Administrator login.
+3. Role-based authorization.
+4. Student isolation between accounts.
+5. Teacher access to assigned classes only.
+6. Grade creation and publication.
+7. Students viewing only their published grades.
+8. Weekly schedule visibility.
+9. Online classes enabled and disabled.
+10. Counselor availability and consultation requests.
+11. Student messaging privacy.
+12. Announcement visibility.
+13. Survey response restrictions.
+14. Administrative account management.
+15. Input validation and common security controls.
+
+Verify that unauthorized users cannot access protected pages or API endpoints.
+
+Provide clear instructions for manually testing each major feature.
+
+==================================================
+17. IMPLEMENTATION WORKFLOW
+==================================================
+
+Work in the following order.
+
+PHASE 1 — PROJECT ANALYSIS AND ARCHITECTURE
+- Analyze the reference website if accessible.
+- Define the application architecture.
+- Define the database relationships.
+- Define user roles and permission rules.
+- Create the complete project structure.
+- Identify external services that require configuration.
+
+PHASE 2 — PUBLIC WEBSITE AND UI
+- Build the public homepage.
+- Build login and registration pages.
+- Implement Persian RTL styling.
+- Build reusable UI components.
+- Build responsive dashboard layouts.
+
+PHASE 3 — AUTHENTICATION AND DATABASE
+- Implement the backend.
+- Configure database access.
+- Implement secure authentication.
+- Implement server-side authorization.
+- Add database migrations and seed scripts.
+
+PHASE 4 — CORE EDUCATIONAL FEATURES
+- Implement user management.
+- Implement classes and enrollment.
+- Implement weekly schedules.
+- Implement teacher grade entry.
+- Implement grade publication and student viewing.
+- Implement announcements and notifications.
+- Implement surveys and feedback.
+
+PHASE 5 — OPTIONAL MODULE CONTROLS
+- Implement online classes.
+- Implement the global online-class enable/disable setting.
+- Implement counselor availability.
+- Implement counseling requests and messaging.
+
+PHASE 6 — TESTING AND DEPLOYMENT
+- Test all major workflows.
+- Fix errors.
+- Check mobile responsiveness.
+- Verify access controls.
+- Document local installation.
+- Document free-hosting deployment.
+- Document production deployment.
+
+==================================================
+18. IMPORTANT DEVELOPMENT RULES
+==================================================
+
+- Do not produce only a static mockup.
+- Do not leave essential buttons without working behavior.
+- Do not simulate successful authentication without a real backend.
+- Do not use frontend-only permissions as a security mechanism.
+- Do not expose private data.
+- Do not silently omit requested features.
+- Do not claim that untested features are fully functional.
+- Do not create fake integrations with external services.
+- Clearly distinguish implemented functionality from placeholders.
+- Prefer simple, maintainable solutions over unnecessary complexity.
+- Preserve all requested features throughout development.
+- Use clear naming conventions and modular code.
+- Fix compilation and runtime errors before declaring the project complete.
+
+If a requirement cannot be implemented within the available environment, explain the limitation and provide the complete implementation files or a clearly documented alternative.
+
+If the full application is too large to generate in a single response, divide it into well-defined phases and maintain a checklist of completed and remaining work.
+
+Never silently replace the requested application with a simplified demo.
+
+==================================================
+19. FINAL DELIVERABLE
+==================================================
+
+Deliver a complete, runnable educational institute management application.
+
+The final project must include:
+
+1. Public Persian website.
+2. Secure registration and login.
+3. Role-specific dashboards.
+4. Administrative user management.
+5. Student academic dashboard.
+6. Teacher grade management.
+7. Weekly class schedules.
+8. Online class module with an administrator-controlled enable/disable switch.
+9. Counselor availability and student communication.
+10. Announcements, notifications, surveys, and feedback.
+11. Persistent database integration.
+12. Backend API.
+13. Security controls.
+14. Tests.
+15. Local Windows setup guide.
+16. Free deployment guide.
+17. Production deployment guide.
+18. Complete project source code.
+
+Start by presenting the architecture, database design, and project directory structure. Then begin implementing the actual application.
+
+Do not stop after the architecture or project plan. Continue generating the implementation in manageable phases, and clearly identify the files created in each phase.

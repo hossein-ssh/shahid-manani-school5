@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@layer base {
+  @font-face {
+    font-family: 'iranyekan';
+    src: local('IRANYekanWeb'), local('iranyekan'), local('IranYekan'), local('IRANSans');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  :root {
+    --color-bg: #f8fafc;
+    --color-card: #ffffff;
+    --color-text: #0f172a;
+    --color-border: #e2e8f0;
+  }
+
+  html.dark {
+    --color-bg: #090d16;
+    --color-card: #111827;
+    --color-text: #f1f5f9;
+    --color-border: #1f2937;
+    color-scheme: dark;
+  }
+
+  html {
+    font-family: 'iranyekan', 'IRANYekanWeb', 'IranYekan', 'IRANSans', 'Vazirmatn', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+  }
+
+  /* Universal high-contrast form controls and dropdown options */
+  select, input, textarea {
+    color: #0f172a;
+    background-color: #ffffff;
+  }
+  
+  option {
+    color: #0f172a;
+    background-color: #ffffff;
+  }
+
+  html.dark select,
+  html.dark input,
+  html.dark textarea {
+    color: #f1f5f9;
+    background-color: #1e293b;
+    border-color: #334155;
+  }
+
+  html.dark option {
+    color: #f1f5f9;
+    background-color: #1e293b;
+  }
+}
+
+/* Persian tabular numbers */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Responsive Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #374151;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Print Styling for Report Card PDF Export */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .no-print, header, nav, footer, button, .install-prompt {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .print-card {
+    border: 1px solid #cbd5e1 !important;
+    box-shadow: none !important;
+    page-break-inside: avoid;
+  }
+}

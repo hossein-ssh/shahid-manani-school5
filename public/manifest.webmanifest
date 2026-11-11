@@ -1,0 +1,21 @@
+{
+  "name": "سامانه هوشمند مدرسه نمونه دولتی شهید منانی",
+  "short_name": "شهید منانی",
+  "description": "سامانه جامع آموزشی و پرتال مدیریت مدرسه نمونه دولتی شهید منانی",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0f172a",
+  "theme_color": "#4f46e5",
+  "lang": "fa",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "productivity"]
+}

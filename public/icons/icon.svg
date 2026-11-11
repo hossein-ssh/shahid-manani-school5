@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5"/>
+      <stop offset="100%" stop-color="#312e81"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <!-- Decorative border ring -->
+  <circle cx="256" cy="256" r="216" fill="none" stroke="#6366f1" stroke-width="6" stroke-dasharray="12 12" opacity="0.6"/>
+  <!-- Academic Open Book Icon -->
+  <g transform="translate(106, 126) scale(0.58)">
+    <path d="M 256 96 C 200 64 120 64 64 80 L 64 416 C 120 400 200 400 256 432 C 312 400 392 400 448 416 L 448 80 C 392 64 312 64 256 96 Z" fill="#ffffff" opacity="0.95"/>
+    <path d="M 256 96 L 256 432" stroke="#4f46e5" stroke-width="14" stroke-linecap="round"/>
+    <!-- Page lines -->
+    <path d="M 112 160 C 150 152 200 152 230 168" stroke="#cbd5e1" stroke-width="10" stroke-linecap="round"/>
+    <path d="M 112 210 C 150 202 200 202 230 218" stroke="#cbd5e1" stroke-width="10" stroke-linecap="round"/>
+    <path d="M 112 260 C 150 252 200 252 230 268" stroke="#cbd5e1" stroke-width="10" stroke-linecap="round"/>
+    <path d="M 282 168 C 312 152 362 152 400 160" stroke="#cbd5e1" stroke-width="10" stroke-linecap="round"/>
+    <path d="M 282 218 C 312 202 362 202 400 210" stroke="#cbd5e1" stroke-width="10" stroke-linecap="round"/>
+    <path d="M 282 268 C 312 202 362 252 400 260" stroke="#cbd5e1" stroke-width="10" stroke-linecap="round"/>
+  </g>
+  <!-- Gold Laurel & Star -->
+  <circle cx="256" cy="116" r="32" fill="url(#gold)"/>
+  <polygon points="256,92 264,110 284,110 268,122 274,140 256,128 238,140 244,122 228,110 248,110" fill="#ffffff"/>
+  <!-- Text Label -->
+  <text x="256" y="420" font-family="sans-serif" font-weight="900" font-size="34" fill="#fbbf24" text-anchor="middle" letter-spacing="1">شهید منانی</text>
+  <text x="256" y="455" font-family="sans-serif" font-weight="600" font-size="20" fill="#e0e7ff" text-anchor="middle">مدرسه نمونه دولتی</text>
+</svg>
